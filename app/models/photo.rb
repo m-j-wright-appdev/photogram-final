@@ -17,6 +17,8 @@ class Photo < ApplicationRecord
   has_many :comments, :dependent => :destroy
   belongs_to :owner, :class_name => "User"
 
-  
+  has_many :fans, :through => :likes, :source => :fan
+  has_many :authors, :through => :comments, :source => :author
+  has_many :followers, :through => :owner, :source => :leaders
 
 end
