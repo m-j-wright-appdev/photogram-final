@@ -11,8 +11,26 @@
     
 
       <h4>Pending follow requests</h4>
-
       <ul>
+          <li>
+            <%= @user.username%>
+
+            <form action="/modify_follow_request/2406" method="post">
+              <input name="query_status" value="accepted" type="hidden">
+
+              <button>
+                Accept
+              </button>
+            </form>
+
+            <form action="/modify_follow_request/2406" method="post">
+              <input name="query_status" value="rejected" type="hidden">
+            
+              <button>
+                Reject
+              </button>
+            </form>
+          </li>
       </ul>
   </dd>
 

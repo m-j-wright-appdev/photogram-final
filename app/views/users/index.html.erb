@@ -15,14 +15,7 @@
     
 
       <td>
-      <% if user.private == true
-        p=1
-        else
-        p=0
-        end
-       %>
-      
-      <%= if p=1
+      <%= if user.private == "true"
         "Yes"
         else
         "No"
