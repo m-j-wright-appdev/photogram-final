@@ -13,7 +13,7 @@
       <h4>Pending follow requests</h4>
       <ul>
           <li>
-            <%= @user.username%>
+            <%= @user.followers %>
 
             <form action="/modify_follow_request/2406" method="post">
               <input name="query_status" value="accepted" type="hidden">

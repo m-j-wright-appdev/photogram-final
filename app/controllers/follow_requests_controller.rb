@@ -18,6 +18,8 @@ class FollowRequestsController < ApplicationController
     @follow_request.sender_id = params.fetch("query_sender_id")
     @follow_request.recipient_id = params.fetch("query_recipient_id")
 
+
+    
     if @follow_request.valid?
       @follow_request.save
       redirect_to("/follow_requests", { :notice => "Follow request created successfully." })
