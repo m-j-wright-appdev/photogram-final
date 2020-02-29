@@ -6,6 +6,24 @@ class UserSessionsController < ApplicationController
     render({ :template => "users/index.html.erb" })
   end
 
+  def feed
+    the_id = params.fetch("username")
+    @user = User.where({:username => the_id}).at(0)
+    render({ :template => "users/feed.html.erb" })
+  end
+
+  def liked_photos
+    the_id = params.fetch("username")
+    @user = User.where({:username => the_id}).at(0)
+    render({ :template => "users/liked_photos.html.erb" })
+  end
+
+  def discover
+    the_id = params.fetch("username")
+    @user = User.where({:username => the_id}).at(0)
+    render({ :template => "users/discover.html.erb" })
+  end
+
   def user_details
     the_id = params.fetch("username")
     @user = User.where({:username => the_id}).at(0)

@@ -25,11 +25,17 @@ class User < ApplicationRecord
   has_many :comments, :foreign_key => "author_id", :dependent => :destroy
   has_many :follow_requests_sent, :class_name => "FollowRequest", :foreign_key => "sender_id", :dependent => :destroy
   has_many :follow_requests_received, :class_name => "FollowRequest", :foreign_key => "recipient_id", :dependent => :destroy
-
+  
   has_many :liked_photos, :through => :likes, :source => :photo
   has_many :commented_photos, :through => :comments, :source => :photo
   has_many :leaders, :through => :follow_requests_sent, :source => :recipient
   has_many :followers, :through => :follow_requests_received, :source => :sender
   has_many :feed_photos, :through => :leaders, :source => :own_photos
+
+  has_many :discover, :through => :leaders, :source => :recipient
+
+  def follow_requests_pending
+    return self.follow_requests_received.status("pending")
+  end
 
 end

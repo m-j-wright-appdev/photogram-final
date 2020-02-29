@@ -67,6 +67,15 @@ Rails.application.routes.draw do
   # USER DETAILS
   get("/users/:username", { :controller => "user_sessions", :action => "user_details" })  
 
+  # FEED 
+  get("/users/:username/feed", { :controller => "user_sessions", :action => "feed" })
+
+  # LIKED PHOTOS
+  get("/users/:username/liked_photos", { :controller => "user_sessions", :action => "liked_photos" })
+  
+  # DISCOVER
+  get("/users/:username/discover", { :controller => "user_sessions", :action => "discover" })
+
   # SIGN UP FORM
   get("/user_sign_up", { :controller => "users", :action => "new_registration_form" })        
   # CREATE RECORD

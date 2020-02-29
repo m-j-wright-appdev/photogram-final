@@ -12,25 +12,28 @@
 
       <h4>Pending follow requests</h4>
       <ul>
-          <li>
-            <%= @user.followers %>
+           <% @user.follow_requests_received.each do |frr| %>
+            <li>
+               <% s = frr.sender %>
+               <%= User.where({:id => s }).at(0).username %>
+                       
+              <form action="/modify_follow_request/<%= frr.id %>" method="post">
+                <input name="query_status" value="accepted" type="hidden">
 
-            <form action="/modify_follow_request/2406" method="post">
-              <input name="query_status" value="accepted" type="hidden">
+                <button>
+                  Accept
+                </button>
+              </form>
 
-              <button>
-                Accept
-              </button>
-            </form>
-
-            <form action="/modify_follow_request/2406" method="post">
-              <input name="query_status" value="rejected" type="hidden">
-            
-              <button>
-                Reject
-              </button>
-            </form>
-          </li>
+              <form action="/modify_follow_request/<%= frr.id %>" method="post">
+                <input name="query_status" value="rejected" type="hidden">
+              
+                <button>
+                  Reject
+                </button>
+              </form>
+            </li>
+          <% end %>
       </ul>
   </dd>
 
@@ -68,7 +71,7 @@
   </ul>
 </nav>
 
-<h2>Own photos </h2>
+<h2>Own photos (<%= @user.own_photos.count %>)</h2>
 
 <table border="1">
   <tbody><tr>
@@ -95,4 +98,32 @@
     <th></th>
   </tr>
 
+  <% @user.own_photos.each do |photo| %>
+    <tr>
+      <td>
+      <img src="<%= photo.image %>">
+      </td>  
+    
+      <td>
+      <% a = photo.owner_id %>
+      <%= User.where({:id => a }).at(0).username %>
+      </td>
+
+      <td>
+      <%= photo.caption %>
+      </td>
+
+      <td>
+      <%= photo.created_at %>
+      </td>
+
+      <td>
+      <%= photo.likes_count %>
+      </td>
+
+      <td>
+      <a href="/photos/<%= photo.id %>">Show details</a>
+      </td>
+    </tr>
+  <%end%>
 </tbody></table>
