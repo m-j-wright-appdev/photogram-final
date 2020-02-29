@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   #Home Page
-   get("/", { :controller => "user_sessions", :action => "create_cookie" }) 
+   get("/", { :controller => "user_sessions", :action => "homepage" }) 
   
   # Routes for the Follow request resource:
 

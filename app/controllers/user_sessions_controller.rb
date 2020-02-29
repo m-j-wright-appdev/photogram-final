@@ -1,6 +1,11 @@
 class UserSessionsController < ApplicationController
   # skip_before_action(:force_user_sign_in, { :only => [:new_session_form, :create_cookie] })
 
+   def homepage
+    @user = User.all.order({:created_at => :desc})
+    render({ :template => "users/index.html.erb" })
+  end
+  
   def new_session_form
     render({ :template => "user_sessions/sign_in.html.erb" })
   end
