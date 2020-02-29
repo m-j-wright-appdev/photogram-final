@@ -53,6 +53,16 @@
       <dd>
         <%= time_ago_in_words(@photo.updated_at) %> ago
       </dd>
+
+      <dt>Add a fan</dt>
+      <dd>
+        <form action="/insert_like" method="post">
+          <input type="hidden" value="<%= @photo.id %>" name="query_photo_id">
+          <input type="hidden" value="<%= @current_user.id %>" name="query_fan_id">
+          <button>Like</button>
+        </form>
+      </dd>
+
     </dl>
   </div>
 </div>
