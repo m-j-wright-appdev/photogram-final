@@ -5,6 +5,13 @@ class UserSessionsController < ApplicationController
     @user = User.all.order({:created_at => :desc})
     render({ :template => "users/index.html.erb" })
   end
+
+  def user_details
+    the_id = params.fetch("username")
+    @user = User.where({:username => the_id}).at(0)
+   
+    render ({:template => "users/user_details.html.erb"})
+  end
   
   def new_session_form
     render({ :template => "user_sessions/sign_in.html.erb" })
