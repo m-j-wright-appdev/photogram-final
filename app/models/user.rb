@@ -32,10 +32,8 @@ class User < ApplicationRecord
   has_many :followers, :through => :follow_requests_received, :source => :sender
   has_many :feed_photos, :through => :leaders, :source => :own_photos
 
-  has_many :discover, :through => :leaders, :source => :recipient
+  has_many :discover, :through => :leaders, :source => :liked_photos
 
-  def follow_requests_pending
-    return self.follow_requests_received.status("pending")
-  end
+  
 
 end

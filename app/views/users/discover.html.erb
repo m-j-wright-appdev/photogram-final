@@ -28,7 +28,7 @@
   </ul>
 </nav>
 
-<h2>Discover (<%= @user.liked_photos.count %>)</h2>
+<h2>Discover (<%= @user.discover.count %>)</h2>
 
 <table border="1">
   <tbody><tr>
@@ -55,7 +55,7 @@
     <th></th>
   </tr>
 
-  <% Photo.all.each do |photo| %>
+  <% @user.discover.each do |photo| %>
     <tr>
       <td>
       <img src="<%= photo.image %>">

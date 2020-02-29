@@ -22,5 +22,6 @@ class Photo < ApplicationRecord
   has_many :fans, :through => :likes, :source => :fan
   has_many :authors, :through => :comments, :source => :author
   has_many :followers, :through => :owner, :source => :leaders
+  has_many :discoverers, :through => :fans, :source => :leaders
 
 end
